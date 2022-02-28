@@ -1,0 +1,48 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.video {
+    position: relative;
+    max-height: 70rem; // corta el gradient, pero deja el video completo
+    min-height: 50rem;
+    overflow: hidden; // hace que el video no crezca hacia abajo
+
+    .overlay {
+        position: absolute;
+        background: rgb(2,0,36);
+        background: linear-gradient(297deg, rgba(2,0,36,0.7483368347338936) 0%, rgba(112,9,121,0.4962359943977591) 46%, rgba(255,0,65,0.6222864145658263) 100%);
+        width: 100%;
+        height: 100%;
+        display: flex; // para alinear de forma vertical
+        flex-direction: column; // abre la posibilidad de hacer vertical el flex
+        justify-content: center;
+    }
+
+    video {
+        width: auto;
+        display: block; // Como el gradient se desborda un poco, este sirve para que quede bien.
+        @include m.desktop {
+            width: 100%;
+        }
+    }
+}
+
+.contenido-video {
+
+    z-index: 10; // con -1 se va hasta el fondo, con 0 se queda donde está y a partir de 1 o 2, dependiendo de el número de capas, se va a mostrar más adelante. En este caso se pone 10 sólo para asegurarlo, mientras mayor sea el número más inmediato es. Sucede cuando se usa la posición relativa y absoluta.
+    h2 {
+        color: #ffffff;
+        font-size: 7rem;
+        margin: 0;
+    }
+
+    p {
+        color: white;
+        background-color: v.$pink;
+        display: inline-block; // solo toma el espacio que requiere para el bg pero no permite que se ponga nada junto de él.
+        padding: 1rem 2rem;
+        margin-top: 1rem;
+        font-weight: 700;
+        font-size: 2.4rem;
+    }
+}
